@@ -41,6 +41,7 @@ public class JobService {
         scheduler.start();
         System.out.println("--------scheduler.start---------");
         //具体任务
+        //默认的jobfactory创建job时不会将其以来的属性自动注入，需要自己重写一个jobfactory
         JobDetail jobDetail= JobBuilder.newJob(DataInsertJob.class).withIdentity("job1","group1").build();
         //触发时间，每5s执行一次
         SimpleScheduleBuilder simpleScheduleBuilder=SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(10).repeatForever();
